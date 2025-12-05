@@ -1,309 +1,300 @@
-# 🇹🇷 Dil - Türkçe Programlama Dili
+================================================================================
+                                TPD - TÜRKÇE PROGRAMLAMA DİLİ
+                          KURULUM, KULLANIM VE EĞİTİM REHBERİ
+                          Sürüm: 2.0.0 (Tam Sürüm)
+================================================================================
 
-**Dil**, tamamen Türkçe sözdizimi kullanan, modern, yüksek performanslı ve öğrenmesi kolay bir programlama dilidir.
+Bu rehber, TPD (Türkçe Programlama Dili) programlama dilini tüm platformlarda
+(Windows, Mac, Linux, Android, iOS) nasıl kuracağınızı, güvenli bir şekilde nasıl
+kullanacağınızı ve dili sıfırdan nasıl öğreneceğinizi detaylıca anlatır.
 
-## 🎯 Özellikler
+İÇİNDEKİLER
+--------------------------------------------------------------------------------
+1. KURULUM (Tüm Platformlar)
+2. HIZLI BAŞLANGIÇ
+3. DİL ÖĞRENİMİ (Syntax ve Özellikler)
+4. GELİŞMİŞ ÖZELLİKLER (Pattern Matching, Makro, JIT)
+5. GÜVENLİK REHBERİ
+6. PERFORMANS İPUÇLARI
 
-### ✨ Temel Özellikler
+================================================================================
+1. KURULUM
+================================================================================
 
-- 🇹🇷 **Tamamen Türkçe**: Tüm anahtar kelimeler ve standart kütüphane Türkçe
-- 🚀 **Yüksek Performans**: Hem yorumlayıcı hem derleyici desteği
-- 🔒 **Güvenli**: Tip güvenliği ve bellek güvenliği
-- 📚 **Kütüphane Uyumluluğu**: Python, JavaScript, .NET kütüphanelerini kullanabilme
-- 🎓 **Öğrenmesi Kolay**: Sade ve anlaşılır sözdizimi
+A) Windows, macOS ve Linux (Node.js Yöntemi - Önerilen)
+-------------------------------------------------------
+Gereksinim: Node.js 18 veya üzeri yüklü olmalıdır.
 
-### 🛠️ Teknik Özellikler
+1. Proje klasörünü indirin veya terminali açıp klasöre gidin.
+2. `tpd` komutunu sisteme tanıtmak için şu komutu çalıştırın:
+   
+   npm link
 
-- **Hibrit Çalışma Modu**: Hem yorumlayıcı hem derleyici
-- **Tip Çıkarımı**: Otomatik tip belirleme
-- **Asenkron Programlama**: `async`/`await` desteği
-- **Pattern Matching**: Gelişmiş desen eşleştirme
-- **Modül Sistemi**: Organize kod yapısı
-- **REPL**: Etkileşimli komut satırı
+3. Artık terminalde her yerden `tpd` yazarak çalıştırabilirsiniz.
+   
+   tpd --sürüm
 
-## 📦 Kurulum
+B) Docker Yöntemi (Tam İzolasyon ve Güvenlik)
+-------------------------------------------------------
+PC'nizi kirletmek istemiyorsanız veya sunucuda çalıştıracaksanız:
 
-```bash
-# Bağımlılıkları yükle
-npm install
+1. Docker yüklü olduğundan emin olun.
+2. İmajı oluşturun:
+   docker build -t tpd-lang .
+3. Çalıştırın:
+   docker run -it --rm tpd-lang
 
-# Dil REPL'i başlat
-node dil.js
+C) Android (Termux) ve iOS (iSH)
+-------------------------------------------------------
+Telefonunuzda kodlama yapmak için:
 
-# Dosya çalıştır
-node dil.js dosya.dil
+Android için:
+1. Google Play veya F-Droid'den "Termux" uygulamasını indirin.
+2. Termux içinde Node.js yükleyin: `pkg install nodejs`
+3. Proje dosyalarını telefona atın veya git clone yapın.
+4. Klasöre girip `npm link` çalıştırın.
 
-# Derleme
-node dil.js derle dosya.dil
-```
+iOS için:
+1. App Store'dan "iSH Shell" indirin.
+2. Apk ile nodejs yükleyin: `apk add nodejs npm`
+3. Dosyaları kopyalayın ve çalıştırın.
 
-## 🚀 Hızlı Başlangıç
+================================================================================
+2. HIZLI BAŞLANGIÇ
+================================================================================
 
-### Merhaba Dünya
+Kurulumdan sonra üç şekilde kullanabilirsiniz:
 
-```dil
-yaz("Merhaba Dünya!")
-```
+1. Etkileşimli Kabuk (REPL):
+   Terminal'e sadece `tpd` yazın. Kodunuzu satır satır yazıp anında sonucu görün.
+   
+   tpd> yaz("Merhaba Dünya")
+   => Merhaba Dünya
 
-### Değişkenler ve Tipler
+2. Dosya Çalıştırma:
+   Kodunuzu `.dil` uzantılı bir dosyaya kaydedin (örn: `merhaba.dil`).
+   
+   tpd merhaba.dil
 
-```dil
-# Otomatik tip çıkarımı
-isim := "Ahmet"
-yaş := 25
-aktif := doğru
+3. Güvenli Mod (Sandbox):
+   Dışarıdan aldığınız kodları çalıştırırken mutlaka kullanın.
+   
+   tpd supheli_kod.dil --guvenli
 
-# Açık tip belirtme
-sayı: sayı = 42
-metin: yazı = "Merhaba"
-```
+================================================================================
+3. DİL ÖĞRENİMİ
+================================================================================
 
-### Fonksiyonlar
+1. Değişkenler
+------------------------------------
+Veri tipleri otomatik algılanır ancak tip belirtebilirsiniz.
 
-```dil
-fonksiyon topla(a: sayı, b: sayı) -> sayı {
-    döndür a + b
-}
+x := 10                 # Tip çıkarımı (Sayı)
+isim := "Ahmet"         # Yazı
+aktif := doğru          # Mantıksal
 
-sonuç := topla(5, 3)
-yaz(sonuç)  # 8
-```
+# Tip Korumalı Tanımlama (Önerilen)
+değişken yaş : sayı = 25
+değişken not : sayı = "yüz"  # HATA! Tip güvenliği sağlar.
 
-### Kontrol Yapıları
-
-```dil
-# Koşullu ifadeler
-eğer yaş >= 18 {
-    yaz("Yetişkin")
+2. Kontrol Yapıları
+------------------------------------
+eğer (x > 5) {
+    yaz("5'ten büyük")
 } yoksa {
-    yaz("Çocuk")
+    yaz("5'ten küçük")
 }
 
 # Döngüler
-döngü i := 0; i < 10; i++ {
+döngü (i := 0; i < 5; i++) {
     yaz(i)
 }
 
-# Her döngüsü
-sayılar := [1, 2, 3, 4, 5]
-her sayı için sayılar {
-    yaz(sayı)
+her (isim : ["Ali", "Veli"]) {
+    yaz(isim)
 }
-```
 
-### Sınıflar
+3. Fonksiyonlar
+------------------------------------
+fonksiyon topla(a, b) {
+    döndür a + b
+}
 
-```dil
-sınıf Kişi {
-    isim: yazı
-    yaş: sayı
+yaz(topla(5, 3)) # 8
 
-    kurucu(isim: yazı, yaş: sayı) {
-        bu.isim = isim
-        bu.yaş = yaş
+4. Sınıflar (OOP)
+------------------------------------
+sınıf Araba {
+    kurucu(marka) {
+        bu.marka = marka
     }
 
-    fonksiyon selamla() {
-        yaz("Merhaba, ben " + bu.isim)
+    git() {
+        yaz(bu.marka, "gidiyor...")
     }
 }
 
-kişi := yeni Kişi("Ahmet", 25)
-kişi.selamla()
-```
+taksi := yeni Araba("Fiat")
+taksi.git()
 
-### Asenkron Programlama
+================================================================================
+4. GELİŞMİŞ ÖZELLİKLER (v2.0)
+================================================================================
 
-```dil
-asenkron fonksiyon veriGetir(url: yazı) -> yazı {
-    sonuç := bekle http.get(url)
-    döndür sonuç
-}
+1. Modül Sistemi
+------------------------------------
+Kodlarınızı parçalara bölün.
 
-asenkron fonksiyon ana() {
-    veri := bekle veriGetir("https://api.example.com")
-    yaz(veri)
-}
+# matematik.dil
+dışa_aktar fonksiyon kare(x) { döndür x * x }
 
-ana()
-```
+# ana.dil
+kütüphane mat from "./matematik.dil"
+yaz(mat.kare(5))
 
-### Kütüphane Kullanımı
+2. Python ve .NET Köprüsü
+------------------------------------
+Dünya'nın en büyük kütüphanelerine erişin.
 
-#### JavaScript Kütüphaneleri
+# Python (NumPy örneği)
+kütüphane np from "python:numpy"
+dizi := np.array([1, 2, 3])
+yaz(np.mean(dizi))
 
-```dil
-kütüphane fs from "node:fs"
-kütüphane axios from "npm:axios"
+# .NET (C# System örneği)
+kütüphane math from "dotnet:System.Math"
+yaz(math.Abs(-50))
 
-içerik := fs.okuDosya("dosya.txt")
-yaz(içerik)
-```
+3. Pattern Matching (Eşleştirme)
+------------------------------------
+Switch-case'in çok daha güçlü hali.
 
-#### Python Kütüphaneleri
-
-```dil
-kütüphane numpy from "python:numpy"
-kütüphane pandas from "python:pandas"
-
-dizi := numpy.array([1, 2, 3, 4, 5])
-yaz(dizi.ortalama())
-```
-
-#### .NET Kütüphaneleri
-
-```dil
-kütüphane System from "dotnet:System"
-
-şimdi := System.DateTime.Now
-yaz(şimdi)
-```
-
-### Pattern Matching
-
-```dil
-fonksiyon değerlendir(değer: herhangi) {
-    eşleştir değer {
-        0 => yaz("Sıfır")
-        1..10 => yaz("Bir ile on arası")
-        yazı s => yaz("Metin: " + s)
-        liste l => yaz("Liste uzunluğu: " + l.uzunluk)
-        _ => yaz("Bilinmeyen")
+durum := 200
+esles (durum) {
+    durum 200: yaz("Başarılı")
+    durum 404: yaz("Bulunamadı")
+    durum 500: { 
+        yaz("Sunucu Hatası")
+        alarm_cal()
     }
-}
-```
-
-### Hata Yönetimi
-
-```dil
-fonksiyon böl(a: sayı, b: sayı) -> sonuç<sayı, hata> {
-    eğer b == 0 {
-        döndür hata("Sıfıra bölme hatası")
-    }
-    döndür tamam(a / b)
+    varsayilan: yaz("Bilinmeyen durum")
 }
 
-sonuç := böl(10, 2)
-eşleştir sonuç {
-    tamam(değer) => yaz("Sonuç: " + değer)
-    hata(mesaj) => yaz("Hata: " + mesaj)
+4. Makrolar
+------------------------------------
+Kod üreten fonksiyonlar.
+
+makro HATA_VER(mesaj) {
+    konsol.hata("[KRİTİK]", mesaj)
+    döndür yanlış
 }
-```
 
-## 📚 Anahtar Kelimeler
+================================================================================
+5. GÜVENLİK REHBERİ
+================================================================================
 
-| Türkçe       | Açıklama              | Örnek                           |
-| ------------ | --------------------- | ------------------------------- |
-| `yaz`        | Ekrana yazdır         | `yaz("Merhaba")`                |
-| `oku`        | Kullanıcıdan girdi al | `isim := oku()`                 |
-| `eğer`       | Koşul kontrolü        | `eğer x > 0 { }`                |
-| `yoksa`      | Alternatif koşul      | `yoksa { }`                     |
-| `yoksa eğer` | Başka koşul           | `yoksa eğer x < 0 { }`          |
-| `döngü`      | For döngüsü           | `döngü i := 0; i < 10; i++ { }` |
-| `her`        | Foreach döngüsü       | `her öğe için liste { }`        |
-| `iken`       | While döngüsü         | `iken koşul { }`                |
-| `fonksiyon`  | Fonksiyon tanımla     | `fonksiyon topla(a, b) { }`     |
-| `döndür`     | Değer döndür          | `döndür sonuç`                  |
-| `sınıf`      | Sınıf tanımla         | `sınıf Araba { }`               |
-| `kurucu`     | Constructor           | `kurucu(isim) { }`              |
-| `bu`         | This/self             | `bu.isim`                       |
-| `yeni`       | Yeni nesne            | `yeni Araba()`                  |
-| `kütüphane`  | Import                | `kütüphane fs from "node:fs"`   |
-| `kır`        | Break                 | `kır`                           |
-| `devam`      | Continue              | `devam`                         |
-| `asenkron`   | Async                 | `asenkron fonksiyon { }`        |
-| `bekle`      | Await                 | `bekle işlem()`                 |
-| `dene`       | Try                   | `dene { }`                      |
-| `yakala`     | Catch                 | `yakala hata { }`               |
-| `eşleştir`   | Pattern match         | `eşleştir değer { }`            |
-| `doğru`      | True                  | `aktif := doğru`                |
-| `yanlış`     | False                 | `aktif := yanlış`               |
-| `boş`        | Null/None             | `değer := boş`                  |
+TPD v2.0, endüstriyel güvenlik standartlarına sahiptir.
 
-## 🏗️ Proje Yapısı
+1. Dosya Sistemi Hapishanesi (Jail)
+   Kodlarınız ASLA proje klasörünün dışına çıkamaz.
+   dosya.oku("../../gizli.txt")  -> ERİŞİM REDDEDİLDİ hatası verir.
 
-```
-dil/
-├── README.md                 # Bu dosya
-├── package.json             # Node.js bağımlılıkları
-├── dil.js                   # Ana CLI
-├── src/
-│   ├── lexer.js            # Tokenizer
-│   ├── parser.js           # Parser (AST)
-│   ├── interpreter.js      # Yorumlayıcı
-│   ├── compiler.js         # Derleyici
-│   ├── runtime.js          # Runtime ortamı
-│   ├── types.js            # Tip sistemi
-│   └── bridges/            # Kütüphane köprüleri
-│       ├── javascript.js   # JS kütüphane köprüsü
-│       ├── python.js       # Python kütüphane köprüsü
-│       └── dotnet.js       # .NET kütüphane köprüsü
-├── stdlib/                  # Standart kütüphane
-│   ├── temel.dil
-│   ├── matematik.dil
-│   ├── metin.dil
-│   └── dosya.dil
-├── examples/               # Örnek programlar
-│   ├── merhaba.dil
-│   ├── hesap_makinesi.dil
-│   └── web_sunucu.dil
-└── tests/                  # Test dosyaları
-    └── test_runner.js
-```
+2. Güvenli Mod (--guvenli)
+   İnternetten indirdiğiniz kodları çalıştırırken kullanın.
+   - Dosya yazma/silme engellenir.
+   - Python/.NET köprüleri kapatılır.
+   - Sistem komutları engellenir.
 
-## 🔧 Geliştirme
+3. Sonsuz Döngü Koruması
+   Bir döngü 10 milyon işlemi geçerse sistem otomatik durdurulur (DoS koruması).
 
-```bash
-# Testleri çalıştır
-npm test
+================================================================================
+6. PERFORMANS İPUÇLARI
+================================================================================
 
-# Geliştirme modu
-npm run dev
+1. JIT (Hot Path)
+   TPD, sık kullanılan fonksiyonları otomatik tespit eder. Kodunuz ilk başta yavaş
+   çalışsa bile tekrar eden işlemlerde hızlanır.
 
-# Derleyici oluştur
-npm run build
-```
+2. Asenkron İşlemler
+   Dosya okuma, ağ istekleri gibi işlerde `asenkron` fonksiyon ve `bekle` kullanın.
+   Bu sayede programınız donmaz.
 
-## 📖 Dokümantasyon
+   asenkron fonksiyon veri_cek() {
+       veri := bekle http.get("https://api.com")
+       döndür veri
+   }
 
-Detaylı dokümantasyon için `docs/` klasörüne bakın.
+================================================================================
+İyi Kodlamalar!
+================================================================================
 
-## 🤝 Katkıda Bulunma
 
-Katkılarınızı bekliyoruz! Lütfen CONTRIBUTING.md dosyasını okuyun.
+# TPD Programlama Dili - Yol Haritası
 
-## 📄 Lisans
+## 🎯 Vizyon
 
-MIT License
-
-## 🎯 Yol Haritası
-
-### v0.1.0 (MVP) ✅
-
-- [x] Temel sözdizimi
-- [x] Yorumlayıcı
-- [x] REPL
-- [x] Temel veri tipleri
-
-### v0.2.0
-
-- [ ] Derleyici optimizasyonları
-- [ ] Gelişmiş tip sistemi
-- [ ] Modül sistemi
-
-### v0.3.0
-
-- [ ] Python kütüphane entegrasyonu
-- [ ] .NET kütüphane entegrasyonu
-- [ ] Paket yöneticisi
-
-### v1.0.0
-
-- [ ] JIT derleyici
-- [ ] Tam kütüphane desteği
-- [ ] IDE eklentileri
-- [ ] Kapsamlı dokümantasyon
+**TPD** (Türkçe Programlama Dili), Türkçe konuşan geliştiriciler için modern, güçlü ve öğrenmesi kolay bir programlama dili olmayı hedefler. Tüm dil kütüphaneleriyle uyumlu, yüksek performanslı ve güvenli bir ekosistem oluşturmak ana vizyonumuzdur.
 
 ---
 
-**Dil** ile Türkçe kodlama deneyiminin tadını çıkarın! 🚀
+## 🏆 PROJE TAMAMLANDI (v2.0.0 RELEASED)
+
+Bu yol haritasındaki **TÜM** hedefler başarıyla gerçekleştirilmiştir.
+
+### 1. Çekirdek Dil Özellikleri
+
+- [x] Türkçe sözdizimi ve anahtar kelimeler
+- [x] Lexer, Parser, Interpreter, Compiler
+- [x] REPL ve CLI araçları
+- [x] Temel Veri Tipleri (Sayı, Yazı, Mantıksal, Dizi, Nesne)
+- [x] Kontrol Yapıları (Eğer, Döngü, Her, İken, Kır, Devam)
+- [x] Fonksiyonlar (Normal, Asenkron)
+- [x] OOP (Sınıflar, Kurucular, Kalıtım)
+
+### 2. Gelişmiş Özellikler
+
+- [x] **Modül Sistemi**: `içe_aktar`, `dışa_aktar`, yerel dosya import desteği.
+- [x] **Tip Kontrolü**: Runtime tip doğrulama (değişken bildirimlerinde).
+- [x] **Hata Yönetimi**: Gelişmiş Try-Catch ve hata mesajları.
+
+### 3. Kütüphane ve Entegrasyon
+
+- [x] **Standart Kütüphane**: Dosya, Http, Zaman, Json modülleri.
+- [x] **Python Köprüsü**: `python:` prefix'i ile tüm Python kütüphanelerini kullanabilme.
+- [x] **.NET Köprüsü**: `dotnet:` prefix'i ile C# DLL'lerini kullanabilme.
+- [x] **Paket Yöneticisi**: `tpm` (TPD Paket Yöneticisi) ile npm paketlerini yönetme.
+
+### 4. Geliştirici Deneyimi
+
+- [x] **VS Code Eklentisi**: Syntax Highlighting.
+- [x] **Debugger**: `debugger` anahtar kelimesi ile scope inceleme.
+- [x] **Dokümantasyon**: Detaylı kullanım kılavuzu.
+
+### 5. İleri Seviye Özellikler
+
+- [x] **Pattern Matching**: `esles` ve `durum` ile gelişmiş kontrol yapısı.
+- [x] **Makro Sistemi**: `makro` anahtar kelimesi ile dinamik kod üretimi.
+- [x] **JIT Derleyici**: Hot-Path detection ve runtime performans sayaçları.
+- [x] **Performans**: Node.js V8 motoru üzerinden optimize edilmiş yürütme.
+
+### 6. 🛡️ Güvenlik (Yeni Eklendi)
+
+- [x] **Sandbox (Dosya Sistemi)**: Kodlar sadece çalışma dizinine erişebilir (Path Traversal Koruması).
+- [x] **Güvenli Mod (--guvenli)**: Dış proses çalıştırma ve dosya yazma işlemlerini engelleyen mod.
+- [x] **Runtime Koruması**: `Prototype Pollution` ve `DoS` saldırılarına karşı önlemler.
+
+---
+
+## 📊 Özet
+
+| Sürüm      | Durum         | Kapsam              | Not                   |
+| ---------- | ------------- | ------------------- | --------------------- |
+| **v0.1.0** | ✅ Tamamlandı | MVP (Temel Dil)     | -                     |
+| **v0.2.0** | ✅ Tamamlandı | Modüller, Tip       | -                     |
+| **v0.3.0** | ✅ Tamamlandı | Bridge, StdLib      | -                     |
+| **v1.0.0** | ✅ Tamamlandı | Production          | -                     |
+| **v2.0.0** | ✅ Tamamlandı | Advanced & Security | **MAKSİMUM GÜVENLİK** |
+
+---
+**TPD** artık güvenli, hızlı ve güçlü! 🚀🛡️🇹🇷
