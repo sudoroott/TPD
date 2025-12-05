@@ -1,2 +1,233 @@
 # TPD
 Türkçe Programlama Dili
+================================================================================
+                                TPD - TÜRKÇE PROGRAMLAMA DİLİ
+                          KURULUM, KULLANIM VE EĞİTİM REHBERİ
+                          Sürüm: 2.0.0 (Tam Sürüm)
+================================================================================
+
+Bu rehber, TPD (Türkçe Programlama Dili) programlama dilini tüm platformlarda
+(Windows, Mac, Linux, Android, iOS) nasıl kuracağınızı, güvenli bir şekilde nasıl
+kullanacağınızı ve dili sıfırdan nasıl öğreneceğinizi detaylıca anlatır.
+
+İÇİNDEKİLER
+--------------------------------------------------------------------------------
+1. KURULUM (Tüm Platformlar)
+2. HIZLI BAŞLANGIÇ
+3. DİL ÖĞRENİMİ (Syntax ve Özellikler)
+4. GELİŞMİŞ ÖZELLİKLER (Pattern Matching, Makro, JIT)
+5. GÜVENLİK REHBERİ
+6. PERFORMANS İPUÇLARI
+
+================================================================================
+1. KURULUM
+================================================================================
+
+A) Windows, macOS ve Linux (Node.js Yöntemi - Önerilen)
+-------------------------------------------------------
+Gereksinim: Node.js 18 veya üzeri yüklü olmalıdır.
+
+1. Proje klasörünü indirin veya terminali açıp klasöre gidin.
+2. `tpd` komutunu sisteme tanıtmak için şu komutu çalıştırın:
+   
+   npm link
+
+3. Artık terminalde her yerden `tpd` yazarak çalıştırabilirsiniz.
+   
+   tpd --sürüm
+
+B) Docker Yöntemi (Tam İzolasyon ve Güvenlik)
+-------------------------------------------------------
+PC'nizi kirletmek istemiyorsanız veya sunucuda çalıştıracaksanız:
+
+1. Docker yüklü olduğundan emin olun.
+2. İmajı oluşturun:
+   docker build -t tpd-lang .
+3. Çalıştırın:
+   docker run -it --rm tpd-lang
+
+C) Android (Termux) ve iOS (iSH)
+-------------------------------------------------------
+Telefonunuzda kodlama yapmak için:
+
+Android için:
+1. Google Play veya F-Droid'den "Termux" uygulamasını indirin.
+2. Termux içinde Node.js yükleyin: `pkg install nodejs`
+3. Proje dosyalarını telefona atın veya git clone yapın.
+4. Klasöre girip `npm link` çalıştırın.
+
+iOS için:
+1. App Store'dan "iSH Shell" indirin.
+2. Apk ile nodejs yükleyin: `apk add nodejs npm`
+3. Dosyaları kopyalayın ve çalıştırın.
+
+================================================================================
+2. HIZLI BAŞLANGIÇ
+================================================================================
+
+Kurulumdan sonra üç şekilde kullanabilirsiniz:
+
+1. Etkileşimli Kabuk (REPL):
+   Terminal'e sadece `tpd` yazın. Kodunuzu satır satır yazıp anında sonucu görün.
+   
+   tpd> yaz("Merhaba Dünya")
+   => Merhaba Dünya
+
+2. Dosya Çalıştırma:
+   Kodunuzu `.dil` uzantılı bir dosyaya kaydedin (örn: `merhaba.dil`).
+   
+   tpd merhaba.dil
+
+3. Güvenli Mod (Sandbox):
+   Dışarıdan aldığınız kodları çalıştırırken mutlaka kullanın.
+   
+   tpd supheli_kod.dil --guvenli
+
+================================================================================
+3. DİL ÖĞRENİMİ
+================================================================================
+
+1. Değişkenler
+------------------------------------
+Veri tipleri otomatik algılanır ancak tip belirtebilirsiniz.
+
+x := 10                 # Tip çıkarımı (Sayı)
+isim := "Ahmet"         # Yazı
+aktif := doğru          # Mantıksal
+
+# Tip Korumalı Tanımlama (Önerilen)
+değişken yaş : sayı = 25
+değişken not : sayı = "yüz"  # HATA! Tip güvenliği sağlar.
+
+2. Kontrol Yapıları
+------------------------------------
+eğer (x > 5) {
+    yaz("5'ten büyük")
+} yoksa {
+    yaz("5'ten küçük")
+}
+
+# Döngüler
+döngü (i := 0; i < 5; i++) {
+    yaz(i)
+}
+
+her (isim : ["Ali", "Veli"]) {
+    yaz(isim)
+}
+
+3. Fonksiyonlar
+------------------------------------
+fonksiyon topla(a, b) {
+    döndür a + b
+}
+
+yaz(topla(5, 3)) # 8
+
+4. Sınıflar (OOP)
+------------------------------------
+sınıf Araba {
+    kurucu(marka) {
+        bu.marka = marka
+    }
+
+    git() {
+        yaz(bu.marka, "gidiyor...")
+    }
+}
+
+taksi := yeni Araba("Fiat")
+taksi.git()
+
+================================================================================
+4. GELİŞMİŞ ÖZELLİKLER (v2.0)
+================================================================================
+
+1. Modül Sistemi
+------------------------------------
+Kodlarınızı parçalara bölün.
+
+# matematik.dil
+dışa_aktar fonksiyon kare(x) { döndür x * x }
+
+# ana.dil
+kütüphane mat from "./matematik.dil"
+yaz(mat.kare(5))
+
+2. Python ve .NET Köprüsü
+------------------------------------
+Dünya'nın en büyük kütüphanelerine erişin.
+
+# Python (NumPy örneği)
+kütüphane np from "python:numpy"
+dizi := np.array([1, 2, 3])
+yaz(np.mean(dizi))
+
+# .NET (C# System örneği)
+kütüphane math from "dotnet:System.Math"
+yaz(math.Abs(-50))
+
+3. Pattern Matching (Eşleştirme)
+------------------------------------
+Switch-case'in çok daha güçlü hali.
+
+durum := 200
+esles (durum) {
+    durum 200: yaz("Başarılı")
+    durum 404: yaz("Bulunamadı")
+    durum 500: { 
+        yaz("Sunucu Hatası")
+        alarm_cal()
+    }
+    varsayilan: yaz("Bilinmeyen durum")
+}
+
+4. Makrolar
+------------------------------------
+Kod üreten fonksiyonlar.
+
+makro HATA_VER(mesaj) {
+    konsol.hata("[KRİTİK]", mesaj)
+    döndür yanlış
+}
+
+================================================================================
+5. GÜVENLİK REHBERİ
+================================================================================
+
+TPD v2.0, endüstriyel güvenlik standartlarına sahiptir.
+
+1. Dosya Sistemi Hapishanesi (Jail)
+   Kodlarınız ASLA proje klasörünün dışına çıkamaz.
+   dosya.oku("../../gizli.txt")  -> ERİŞİM REDDEDİLDİ hatası verir.
+
+2. Güvenli Mod (--guvenli)
+   İnternetten indirdiğiniz kodları çalıştırırken kullanın.
+   - Dosya yazma/silme engellenir.
+   - Python/.NET köprüleri kapatılır.
+   - Sistem komutları engellenir.
+
+3. Sonsuz Döngü Koruması
+   Bir döngü 10 milyon işlemi geçerse sistem otomatik durdurulur (DoS koruması).
+
+================================================================================
+6. PERFORMANS İPUÇLARI
+================================================================================
+
+1. JIT (Hot Path)
+   TPD, sık kullanılan fonksiyonları otomatik tespit eder. Kodunuz ilk başta yavaş
+   çalışsa bile tekrar eden işlemlerde hızlanır.
+
+2. Asenkron İşlemler
+   Dosya okuma, ağ istekleri gibi işlerde `asenkron` fonksiyon ve `bekle` kullanın.
+   Bu sayede programınız donmaz.
+
+   asenkron fonksiyon veri_cek() {
+       veri := bekle http.get("https://api.com")
+       döndür veri
+   }
+
+================================================================================
+İyi Kodlamalar!
+================================================================================
+
