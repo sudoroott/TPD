@@ -1,0 +1,1 @@
+içe_aktar "modul.dil" olarak mat yaz("Pi:", mat.pi) yaz("Topla:", mat.topla(5, 3))

@@ -1,0 +1,1 @@
+dosya.yaz("test.txt", "Merhaba Dünya") yaz("Dosya içeriği:", dosya.oku("test.txt")) yaz("Tarih:", zaman.yerelTarih()) dene { veri := http.getir("https://jsonplaceholder.typicode.com/todos/1") yaz("HTTP Başlık:", veri.title) } yakala e { yaz("HTTP Hatası:", e) } dosya.sil("test.txt")

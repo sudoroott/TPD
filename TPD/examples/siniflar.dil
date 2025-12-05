@@ -1,0 +1,85 @@
+# Sınıf Örneği - Dil Programlama Dili
+
+# Kişi sınıfı tanımla
+sınıf Kişi {
+    isim: yazı
+    yaş: sayı
+    meslek: yazı
+    
+    kurucu(isim: yazı, yaş: sayı, meslek: yazı) {
+        bu.isim = isim
+        bu.yaş = yaş
+        bu.meslek = meslek
+    }
+    
+    fonksiyon selamla() {
+        yaz("Merhaba! Ben", bu.isim)
+        yaz("Yaşım:", bu.yaş)
+        yaz("Mesleğim:", bu.meslek)
+    }
+    
+    fonksiyon doğumGünü() {
+        bu.yaş = bu.yaş + 1
+        yaz(bu.isim, "artık", bu.yaş, "yaşında! 🎂")
+    }
+}
+
+# Öğrenci sınıfı (Kişi'den türetilmiş gibi)
+sınıf Öğrenci {
+    isim: yazı
+    yaş: sayı
+    okul: yazı
+    notlar: dizi
+    
+    kurucu(isim: yazı, yaş: sayı, okul: yazı) {
+        bu.isim = isim
+        bu.yaş = yaş
+        bu.okul = okul
+        bu.notlar = []
+    }
+    
+    fonksiyon notEkle(not: sayı) {
+        dizi.ekle(bu.notlar, not)
+        yaz("Not eklendi:", not)
+    }
+    
+    fonksiyon ortalamaHesapla() -> sayı {
+        eğer dizi.uzunluk(bu.notlar) == 0 {
+            döndür 0
+        }
+        
+        toplam := 0
+        her not için bu.notlar {
+            toplam = toplam + not
+        }
+        
+        döndür toplam / dizi.uzunluk(bu.notlar)
+    }
+    
+    fonksiyon bilgiGöster() {
+        yaz("=== Öğrenci Bilgileri ===")
+        yaz("İsim:", bu.isim)
+        yaz("Yaş:", bu.yaş)
+        yaz("Okul:", bu.okul)
+        yaz("Notlar:", bu.notlar)
+        yaz("Ortalama:", bu.ortalamaHesapla())
+    }
+}
+
+# Kişi oluştur
+yaz("=== Kişi Örneği ===")
+ahmet := yeni Kişi("Ahmet Yılmaz", 25, "Yazılım Geliştirici")
+ahmet.selamla()
+yaz("")
+ahmet.doğumGünü()
+yaz("")
+
+# Öğrenci oluştur
+yaz("=== Öğrenci Örneği ===")
+ayşe := yeni Öğrenci("Ayşe Demir", 20, "İstanbul Üniversitesi")
+ayşe.notEkle(85)
+ayşe.notEkle(92)
+ayşe.notEkle(78)
+ayşe.notEkle(95)
+yaz("")
+ayşe.bilgiGöster()

@@ -1,0 +1,47 @@
+# Hesap Makinesi - Dil Programlama Dili
+
+fonksiyon topla(a: sayı, b: sayı) -> sayı {
+    döndür a + b
+}
+
+fonksiyon çıkar(a: sayı, b: sayı) -> sayı {
+    döndür a - b
+}
+
+fonksiyon çarp(a: sayı, b: sayı) -> sayı {
+    döndür a * b
+}
+
+fonksiyon böl(a: sayı, b: sayı) -> sayı {
+    eğer b == 0 {
+        yaz("Hata: Sıfıra bölme!")
+        döndür 0
+    }
+    döndür a / b
+}
+
+# Hesap makinesi menüsü
+yaz("=== Türkçe Hesap Makinesi ===")
+yaz("")
+
+sayı1 := 10
+sayı2 := 5
+
+yaz("Sayı 1:", sayı1)
+yaz("Sayı 2:", sayı2)
+yaz("")
+
+yaz("Toplama:", topla(sayı1, sayı2))
+yaz("Çıkarma:", çıkar(sayı1, sayı2))
+yaz("Çarpma:", çarp(sayı1, sayı2))
+yaz("Bölme:", böl(sayı1, sayı2))
+yaz("")
+
+# Gelişmiş matematik işlemleri
+yaz("=== Gelişmiş İşlemler ===")
+yaz("Karekök(16):", matematik.karekök(16))
+yaz("Üs(2, 8):", matematik.üs(2, 8))
+yaz("Mutlak(-42):", matematik.mutlak(-42))
+yaz("Yuvarla(3.7):", matematik.yuvarla(3.7))
+yaz("Pi:", matematik.pi)
+yaz("E:", matematik.e)

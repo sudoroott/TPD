@@ -1,0 +1,25 @@
+{
+  "name": "dil-lang",
+  "displayName": "Dil",
+  "description": "Türkçe Programlama Dili Desteği",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "dil",
+      "aliases": ["Dil", "dil"],
+      "extensions": [".dil"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "dil",
+      "scopeName": "source.dil",
+      "path": "./syntaxes/dil.tmLanguage.json"
+    }]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Dil",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#numbers"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.dil",
+          "match": "\\b(eğer|yoksa|döngü|için|her|iken|kır|devam|fonksiyon|döndür|sınıf|kurucu|bu|yeni|kütüphane|içe_aktar|dışa_aktar|olarak|from|asenkron|bekle|dene|yakala)\\b"
+        },
+        {
+            "name": "constant.language.dil",
+            "match": "\\b(doğru|yanlış|boş)\\b"
+        },
+        {
+            "name": "variable.language.dil",
+            "match": "\\b(bu)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.dil",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.dil",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.dil",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "numbers": {
+      "name": "constant.numeric.dil",
+      "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+    }
+  },
+  "scopeName": "source.dil"
+}

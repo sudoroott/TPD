@@ -1,0 +1,1 @@
+yaz("--- Path Traversal Testi ---") dene { dosya.oku("../izinsiz.txt") } yakala e { yaz("YAKALANDI: ", e) } yaz("--- Prototype Pollution Testi ---") dene { x := {} x.__proto__ } yakala e { yaz("P-YAKALANDI: ", e) } yaz("--- Safe Mode Testi ---") dene { dosya.yaz("guvenli_test.txt", "test") yaz("Dosya yazıldı!") } yakala e { yaz("YAKALANDI: ", e) }

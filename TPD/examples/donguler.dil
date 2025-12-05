@@ -1,0 +1,93 @@
+# Döngüler ve Diziler - Dil Programlama Dili
+
+yaz("=== Döngü Örnekleri ===")
+yaz("")
+
+# For döngüsü
+yaz("1. For Döngüsü (0'dan 5'e kadar):")
+döngü i := 0; i < 5; i++ {
+    yaz("  Sayı:", i)
+}
+yaz("")
+
+# Her döngüsü (foreach)
+yaz("2. Her Döngüsü (Dizi elemanları):")
+meyveler := ["Elma", "Armut", "Muz", "Çilek", "Kiraz"]
+her meyve için meyveler {
+    yaz("  Meyve:", meyve)
+}
+yaz("")
+
+# While döngüsü
+yaz("3. While Döngüsü (Sayaç):")
+sayaç := 0
+iken sayaç < 3 {
+    yaz("  Sayaç:", sayaç)
+    sayaç = sayaç + 1
+}
+yaz("")
+
+# Dizi işlemleri
+yaz("=== Dizi İşlemleri ===")
+yaz("")
+
+sayılar := [1, 2, 3, 4, 5]
+yaz("Orijinal dizi:", sayılar)
+yaz("Dizi uzunluğu:", dizi.uzunluk(sayılar))
+yaz("")
+
+# Dizi ekleme
+dizi.ekle(sayılar, 6)
+yaz("6 eklendikten sonra:", sayılar)
+
+# Dizi çıkarma
+sonEleman := dizi.çıkar(sayılar)
+yaz("Son eleman çıkarıldı:", sonEleman)
+yaz("Güncel dizi:", sayılar)
+yaz("")
+
+# İç içe döngüler - Çarpım tablosu
+yaz("=== Çarpım Tablosu (5x5) ===")
+döngü i := 1; i <= 5; i++ {
+    satır := ""
+    döngü j := 1; j <= 5; j++ {
+        sonuç := i * j
+        satır = satır + sonuç + "\t"
+    }
+    yaz(satır)
+}
+yaz("")
+
+# Break ve Continue
+yaz("=== Break ve Continue Örnekleri ===")
+yaz("")
+
+yaz("Break örneği (5'te dur):")
+döngü i := 1; i <= 10; i++ {
+    eğer i == 5 {
+        yaz("  5'e ulaşıldı, döngü durduruluyor!")
+        kır
+    }
+    yaz("  Sayı:", i)
+}
+yaz("")
+
+yaz("Continue örneği (Çift sayıları atla):")
+döngü i := 1; i <= 10; i++ {
+    eğer i % 2 == 0 {
+        devam
+    }
+    yaz("  Tek sayı:", i)
+}
+yaz("")
+
+# Fibonacci dizisi
+yaz("=== Fibonacci Dizisi (İlk 10 terim) ===")
+fibonacci := [0, 1]
+döngü i := 2; i < 10; i++ {
+    önceki := fibonacci[i - 1]
+    önönceki := fibonacci[i - 2]
+    yeniSayı := önceki + önönceki
+    dizi.ekle(fibonacci, yeniSayı)
+}
+yaz(fibonacci)

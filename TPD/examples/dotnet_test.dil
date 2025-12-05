@@ -1,0 +1,1 @@
+kütüphane math from "dotnet:System.Math" kütüphane guid from "dotnet:System.Guid" yaz("Mutlak Değer (-10):", math.Abs(-10)) yaz("Pi Sayısı:", math.PI()) yaz("Yeni GUID:", guid.NewGuid())

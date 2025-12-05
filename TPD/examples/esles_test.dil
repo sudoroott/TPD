@@ -1,0 +1,1 @@
+x := 2 yaz("Pattern Matching Testi:") esles (x) { durum 1: yaz("Bir") durum 2: { yaz("İki") yaz("Doğru!") } varsayilan: yaz("Diğer") } yaz("---") yaz("Makro Testi:") makro TOPLA(a, b) { döndür a + b } yaz("5 + 10 =", TOPLA(5, 10)) debugger yaz("Debugger sonrası")

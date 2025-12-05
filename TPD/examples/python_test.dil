@@ -1,0 +1,1 @@
+kütüphane math from "python:math" yaz("Pi:", math.pi()) yaz("Karekök 16:", math.sqrt(16))

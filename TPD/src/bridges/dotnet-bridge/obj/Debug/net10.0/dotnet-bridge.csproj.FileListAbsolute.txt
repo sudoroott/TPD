@@ -1,0 +1,14 @@
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\bin\Debug\net10.0\dotnet-bridge.exe
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\bin\Debug\net10.0\dotnet-bridge.deps.json
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\bin\Debug\net10.0\dotnet-bridge.runtimeconfig.json
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\bin\Debug\net10.0\dotnet-bridge.dll
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\bin\Debug\net10.0\dotnet-bridge.pdb
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.AssemblyInfoInputs.cache
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.AssemblyInfo.cs
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.csproj.CoreCompileInputs.cache
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.dll
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\refint\dotnet-bridge.dll
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.pdb
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\dotnet-bridge.genruntimeconfig.cache
+C:\Users\Root\Desktop\dil\src\bridges\dotnet-bridge\obj\Debug\net10.0\ref\dotnet-bridge.dll
